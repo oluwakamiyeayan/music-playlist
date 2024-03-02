@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-4.5.0-dist/css/bootstrap.min.css">
+
+</head>
+<body>
+    <h1 class="ml-2 mt-4 shadow text-danger text-center d-3">Music playlist</h1>
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-6 shadow" id="noteText" style="height: 60vh;">
+            </div>
+        
+            <div class="col-5 ml-4">
+                <input type="text"class="form-control mt-5" placeholder="Artist name" id="artname"><br>
+                <input type="text"class="form-control" placeholder="Song Title" id="songtit"><br>
+                <input type="text"class="form-control" placeholder="Album" id="album"><br>
+                <!-- <input type="text"class="form-control" placeholder="Artist name" id="artname"> -->
+                <button class="btn btn-danger text-white" onclick="add()">Add to list</button>
+        </div>
+    </div>
+
+    </div>
+
+    <script>
+        let objectPickup = []
+        function add(character) {
+            let artName = document.getElementById('artname').value;
+            let songTit = document.getElementById('songtit').value;
+            let album = document.getElementById('album').value;
+
+            let collt ={Artist : artName, SongTitle : songTit, Album: album
+            }
+            objectPickup.push(collt);
+            console.log(objectPickup);
+
+            // localStorage.setItem('objectCont', JSON.stringify(objectPickup))
+            localStorage.OluwakamiyeObjectContent = JSON.stringify(objectPickup);
+
+            //  document.getElementById('artname').value ='';
+            //  document.getElementById('songtit').value = '';
+            //  document.getElementById('album').value = '';
+             display()
+             
+            
+        }
+        function display() {
+            let contentDisplay =""
+            objectPickup.map((c) => {
+            contentDisplay += `<div class = "bg dark">
+                      <p class ="shadow p-4 text-primary">${c.Artist}</p><P class = "shadow p-4 text-primary mt-2">${c.SongTitle}</P><P class = "shadow p-4 text-primary mt-2" ">${c.Album}</P></div>`
+            })
+            document.getElementById('noteText').innerHTML = contentDisplay;
+
+            
+        }
+        
+    </script>
+   
+</body>
+</html>
